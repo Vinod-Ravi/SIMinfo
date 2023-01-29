@@ -1,0 +1,77 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>sim_card</mat-icon>
+      <!--we will get icons from https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/-->
+    </button>
+    <span>SIM info</span>
+    <span class="example-spacer"></span>
+      <button mat-raised-button color="warn" (click)="openDialog()">Add Info</button>
+      
+      <div class="example-button-container">
+        <button mat-fab color="warn" (click)="GoToHome()" aria-label="Example icon button with a home icon">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+  </mat-toolbar>
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Type here to search...." #input>
+      </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+        <!--  Column starts-->
+          <ng-container matColumnDef="aoc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Advice of Charge (AoC) </th>
+            <td mat-cell *matCellDef="let row"> {{row.aoc}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="ki">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Authentication Key (Ki) </th>
+            <td mat-cell *matCellDef="let row"> {{row.ki}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="mcc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Country Code (MCC) </th>
+            <td mat-cell *matCellDef="let row"> {{row.mcc}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="lai">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Local Area Identity (LAI) </th>
+            <td mat-cell *matCellDef="let row"> {{row.lai}} </td>
+          </ng-container>
+     
+            <ng-container matColumnDef="spn">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Service Provider Name (SPN) </th>
+              <td mat-cell *matCellDef="let row"> {{row.spn}} </td>
+            </ng-container>
+          
+          <ng-container matColumnDef="iccid">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Integrated Circuit Card ID (ICCID) </th>
+            <td mat-cell *matCellDef="let row"> {{row.iccid}} </td>
+          </ng-container>
+
+            <ng-container matColumnDef="vas">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Value-Added Services (VAS) </th>
+              <td mat-cell *matCellDef="let row"> {{row.vas}} </td>
+            </ng-container>
+           <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.date  |date:'mediumDate'}} </td>
+          </ng-container>
+           <!--  Column end-->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+  </div>
