@@ -1,14 +1,15 @@
 <div class="wrapper">
-    <h1>SIMinfo Login</h1>
+    <h1>SIM info Login</h1>
 
     <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="type your user name" type="text" autocomplete="off" [(ngModel)]="username" required/>
+        <input matInput placeholder="type your user name" type="text" autocomplete="off" [(ngModel)]="username"
+            required />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="type your password" type="password" [(ngModel)]="password" required/>
+        <input matInput placeholder="type your password" type="password" [(ngModel)]="password" required />
     </mat-form-field>
 
     <button mat-raised-button color="primary" (click)="LoginUser()">Log in</button>

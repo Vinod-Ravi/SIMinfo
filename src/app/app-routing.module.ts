@@ -7,17 +7,17 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SiminformationComponent } from './siminformation/siminformation.component';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
 
-const routes: Routes = [  
+const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'userregistration', component: UserregistrationComponent },
-  { path: 'siminformation',component:SiminformationComponent},
+  { path: 'siminformation', component: SiminformationComponent },
   { path: 'navigation', component: NavigationComponent },
   {
-    path: '',redirectTo: '/login',pathMatch:'full'
+    path: '', redirectTo: '/login', pathMatch: 'full'
   },
   {
-    path:'**',component:ErrorpageComponent  
+    path: '**', component: ErrorpageComponent
   }
 ];
 

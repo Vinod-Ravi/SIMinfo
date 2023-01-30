@@ -1,26 +1,15 @@
 {
   "simInfoList": [
     {
-      "aoc": "test 1",
-      "ki": "1234",
+      "aoc": "1",
+      "ki": "123",
       "mcc": "91",
-      "lai": "ind",
+      "lai": "333",
       "spn": "Reliance Jio",
-      "iccid": "ff",
-      "vas": "g",
-      "date": "2023-01-16T18:30:00.000Z",
+      "iccid": "543",
+      "vas": "456",
+      "date": "2023-01-12T18:30:00.000Z",
       "id": 1
-    },
-    {
-      "aoc": "test2",
-      "ki": "4321",
-      "mcc": "81",
-      "lai": "",
-      "spn": "Idea",
-      "iccid": "test",
-      "vas": "11",
-      "date": "2023-01-11T18:30:00.000Z",
-      "id": 2
     }
   ],
   "comments": [
