@@ -43,7 +43,7 @@ export class SiminformationComponent implements OnInit{
         /*console.log(res);*/
         this.dataSource=new MatTableDataSource(res);
         this.dataSource.paginator=this.paginator; /*comes from @ViewChild(MatPaginator) paginator!: MatPaginator;*/
-        this.dataSource.sort=this.sort;/*  comes from  @ViewChild(MatSort) sort!: MatSort;  */
+        this.dataSource.sort=this.sort;/*comes from  @ViewChild(MatSort) sort!: MatSort;*/
       },
       error:(err)=>
       {
