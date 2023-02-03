@@ -4,46 +4,41 @@
   <form [formGroup]="simInfoForm">
     <mat-form-field appearance="outline">
       <mat-label>Advice of Charge (AoC)</mat-label>
-      <input formControlName="aoc" matInput placeholder="Advice of Charge (AoC)">
+      <input formControlName="adviceOfCharge" matInput placeholder="Advice of Charge (AoC)">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Authentication Key (Ki)</mat-label>
-      <input formControlName="ki" matInput placeholder="Authentication Key (Ki)">
+      <input formControlName="authenticationKey" matInput placeholder="Authentication Key (Ki)">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Mobile Country Code (MCC)</mat-label>
-      <mat-select formControlName="mcc" placeholder="Mobile Country Code (MCC)">
-        <mat-option value="91">India 91</mat-option>
-        <mat-option value="81">Japan 81</mat-option>
-        <mat-option value="965">Kuwait 965</mat-option>
-        <mat-option value="60">Malaysia 60</mat-option>
-        <mat-option value="44">UK 44</mat-option>
-        <mat-option value="1">US 1</mat-option>
-        <mat-option value="32">Belgium 32</mat-option>
+      <mat-select formControlName="mobileCountryCode" placeholder="Mobile Country Code (MCC)">
+        <mat-option *ngFor="let CountryCode of countryCodeList"
+          [value]="CountryCode.countryCode">{{CountryCode.codeName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Local Area Identity (LAI)</mat-label>
-      <input formControlName="lai" matInput placeholder="Local Area Identity (LAI)">
+      <input formControlName="localAreaIdentity" matInput placeholder="Local Area Identity (LAI)">
     </mat-form-field>
     <label for="">
       <h1>Service Provider Name (SPN)</h1>
     </label>
-    <mat-radio-group formControlName="spn" class="example-radio-group">
+    <mat-radio-group formControlName="serviceProviderName" class="example-radio-group">
       <mat-radio-button class="example-radio-button" *ngFor="let service of serviceProviderList" [value]="service">
         {{service}}</mat-radio-button>
     </mat-radio-group>
     <mat-form-field appearance="outline">
       <mat-label>Integrated Circuit Card ID (ICCID)</mat-label>
-      <input formControlName="iccid" matInput placeholder="Integrated Circuit Card ID (ICCID)">
+      <input formControlName="integratedCircuitCardId" matInput placeholder="Integrated Circuit Card ID (ICCID)">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Value-Added Services (VAS)</mat-label>
-      <input formControlName="vas" matInput placeholder="Value-Added Services (VAS)">
+      <input formControlName="valueAddedServices" matInput placeholder="Value-Added Services (VAS)">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Choose a date</mat-label>
-      <input formControlName="date" matInput [matDatepicker]="picker">
+      <input formControlName="createdDate" matInput [matDatepicker]="picker">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -52,6 +47,6 @@
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button mat-raised-button color="primary" (click)="SaveOrUpdate()">{{SaveOrUpdateBtn}}</button>
+  <button mat-raised-button color="primary" (click)="saveOrUpdate()">{{SaveOrUpdateBtn}}</button>
 
 </div>

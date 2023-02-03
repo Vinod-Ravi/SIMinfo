@@ -3,49 +3,49 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogcountrycodeComponent } from '../dialogcountrycode/dialogcountrycode.component';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
-import { Siminformation } from '../models/interface/siminformation.model';
-import { headerNameForSimInfo } from '../shared/common/displaynames'
+import { headerNameForMobileCountryCode } from '../shared/common/displaynames'
+import { Mobilecountrycode } from '../models/interface/mobilecountrycode.model';
 import { Redirection } from '../models/interface/redirection.model';
 
 @Component({
-  selector: 'app-siminformation',
-  templateUrl: './siminformation.component.html',
-  styleUrls: ['./siminformation.component.scss']
+  selector: 'app-mobilecountrycode',
+  templateUrl: './mobilecountrycode.component.html',
+  styleUrls: ['./mobilecountrycode.component.scss']
 })
-export class SiminformationComponent implements OnInit, Redirection {
-  title = 'SIM Info';
-  displayedColumns: string[] = headerNameForSimInfo;
-  dataSource!: MatTableDataSource<Siminformation>;
+export class MobilecountrycodeComponent implements OnInit, Redirection {
+  title = 'SIM info';
+  displayedColumns: string[] = headerNameForMobileCountryCode;
+  dataSource!: MatTableDataSource<Mobilecountrycode>;
+  countryCodeList!: Mobilecountrycode[];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private dialog: MatDialog,
     private simInfoApi: ApiService,
-    private router: Router
-  ) { }
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getSimInformation();
+    this.getMobileCountryCode();
   }
   openDialog() {
 
-    this.dialog.open(DialogComponent, {
+    this.dialog.open(DialogcountrycodeComponent, {
       width: '30%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
-        this.getSimInformation();
+        this.getMobileCountryCode();
       }
     })
   }
   redirectToComponent(url: string) {
     this.router.navigateByUrl(url);
   }
-  getSimInformation() {
-    this.simInfoApi.getSimInfo().subscribe({
+  getMobileCountryCode() {
+    this.simInfoApi.getMobileCountryCodes().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
@@ -56,21 +56,21 @@ export class SiminformationComponent implements OnInit, Redirection {
       }
     })
   }
-  editSimInfo(row: any) {
-    this.dialog.open(DialogComponent, {
+  editCountryCode(row: any) {
+    this.dialog.open(DialogcountrycodeComponent, {
       width: '30%',
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
-        this.getSimInformation();
+        this.getMobileCountryCode();
       }
     })
   }
-  deleteSimInfo(id: number) {
-    this.simInfoApi.deleteSimInfo(id).subscribe({
+  deleteCountryCode(id: number) {
+    this.simInfoApi.deleteMobileCountryCode(id).subscribe({
       next: (res) => {
         alert("Sim information deleted sucessfully");
-        this.getSimInformation();
+        this.getMobileCountryCode();
       },
       error: () => {
         alert("Error while deleting the product!!!");
@@ -86,4 +86,5 @@ export class SiminformationComponent implements OnInit, Redirection {
     }
   }
 }
+
 

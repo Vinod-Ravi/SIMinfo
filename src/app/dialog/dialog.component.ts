@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';/*imported for dialog closing */
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { serviceProviderName } from '../shared/common/displaynames'
+import { Mobilecountrycode } from '../models/interface/mobilecountrycode.model';
 
 @Component({
   selector: 'app-dialog',
@@ -9,78 +11,80 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';/*impor
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  serviceProviderList = ["Reliance Jio", "Idea", "Vodafone", "Airtel"];
+  serviceProviderList = serviceProviderName;
+  countryCodeList!: Mobilecountrycode[];
   simInfoForm !: FormGroup;
   SaveOrUpdateBtn: string = "Save";
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private api: ApiService,
     private dialogref: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public editData: any)/*injecting api service and injecting MatDialogRef*/ { }
+    @Inject(MAT_DIALOG_DATA) public editData: any,
+    private simInfoApi: ApiService) { }
+
   ngOnInit(): void {
+    this.getMobileCountryCodes();
     this.simInfoForm = this.formBuilder.group({
-      aoc: ['', Validators.required],
-      ki: ['', Validators.required],
-      mcc: ['', Validators.required],
-      lai: ['', Validators.required],
-      spn: ['', Validators.required],
-      iccid: ['', Validators.required],
-      vas: ['', Validators.required],
-      date: ['', Validators.required]
+      adviceOfCharge: ['', Validators.required],
+      authenticationKey: ['', Validators.required],
+      mobileCountryCode: ['', Validators.required],
+      localAreaIdentity: ['', Validators.required],
+      serviceProviderName: ['', Validators.required],
+      integratedCircuitCardId: ['', Validators.required],
+      valueAddedServices: ['', Validators.required],
+      createdDate: ['', Validators.required]
     })
 
-    /* when click on edit data **starts
-    console.log(this.editData);*/
     if (this.editData) {
-      this.SaveOrUpdateBtn = "Update";/*when user click on edit changing name of button to Update */
-      this.simInfoForm.controls['aoc'].setValue(this.editData.aoc);
-      this.simInfoForm.controls['ki'].setValue(this.editData.ki);
-      this.simInfoForm.controls['mcc'].setValue(this.editData.mcc);
-      this.simInfoForm.controls['lai'].setValue(this.editData.lai);
-      this.simInfoForm.controls['spn'].setValue(this.editData.spn);
-      this.simInfoForm.controls['iccid'].setValue(this.editData.iccid);
-      this.simInfoForm.controls['vas'].setValue(this.editData.vas);
-      this.simInfoForm.controls['date'].setValue(this.editData.date);
+      this.SaveOrUpdateBtn = "Update";
+      this.simInfoForm.controls['adviceOfCharge'].setValue(this.editData.adviceOfCharge);
+      this.simInfoForm.controls['authenticationKey'].setValue(this.editData.authenticationKey);
+      this.simInfoForm.controls['mobileCountryCode'].setValue(this.editData.mobileCountryCode);
+      this.simInfoForm.controls['localAreaIdentity'].setValue(this.editData.localAreaIdentity);
+      this.simInfoForm.controls['serviceProviderName'].setValue(this.editData.serviceProviderName);
+      this.simInfoForm.controls['integratedCircuitCardId'].setValue(this.editData.integratedCircuitCardId);
+      this.simInfoForm.controls['valueAddedServices'].setValue(this.editData.valueAddedServices);
+      this.simInfoForm.controls['createdDate'].setValue(this.editData.createdDate);
     }
-    /*end */
   }
-  SaveOrUpdate() {
-    if (!this.editData)/* when it is save action performed by user*/ {
-      this.AddInformation()
+  getMobileCountryCodes() {
+    this.simInfoApi.getMobileCountryCodes().subscribe({
+      next: (res) => {
+        this.countryCodeList = res;
+      },
+      error: (err) => {
+        alert("Error while fetching data!!");
+      }
+    })
+  }
+  saveOrUpdate() {
+    if (!this.editData) {
+      this.addInformation()
     }
     else {
-      this.UpdateInformation();
+      this.updateInformation();
     }
   }
-  AddInformation() {
-
-    /*alert(1);*/
-    /*console.log(this.simInfoForm.value);
-    alert(this.simInfoForm.valid);
-   if(this.simInfoForm.valid)
-   {*/
+  addInformation() {
     this.api.postSimInfo(this.simInfoForm.value)
       .subscribe({
         next: (res) => {
-          /*if sucess then will execute the next block*/
-          /* alert(2);*/
           alert("Sim Information saved Sucessfully");
           this.simInfoForm.reset();
-          this.dialogref.close('save');/*passing this data ('save') to siminformation.component and this value is used to refresh table based on condition */
+          this.dialogref.close('save');
         },
         error: () => {
           alert("Error occured while save data!!");
         }
       })
-
   }
-  /*}*/
-  UpdateInformation() {
+  updateInformation() {
     this.api.putSimInfo(this.simInfoForm.value, this.editData.id)
       .subscribe({
         next: (res) => {
           alert("Sim information updated Sucessfully");
           this.simInfoForm.reset();
-          this.dialogref.close('update');/*passing this data ('update') to siminformation.component and this value is used to refresh table based on condition */
+          this.dialogref.close('update');
         }, error: () => {
           alert("Error occured while updating data!!");
         }

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Add Mobile Country Code</h1>
+<hr>
+<div mat-dialog-content>
+  <form [formGroup]="countryCodeForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Country code</mat-label>
+      <input formControlName="countryCode" matInput placeholder="Country code">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Country name</mat-label>
+      <input formControlName="countryName" matInput placeholder="Country name">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" (click)="saveOrUpdate()">{{SaveOrUpdateBtn}}</button>
+
+</div>

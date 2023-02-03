@@ -1,17 +1,5 @@
 {
-  "simInfoList": [
-    {
-      "aoc": "1",
-      "ki": "123",
-      "mcc": "91",
-      "lai": "333",
-      "spn": "Reliance Jio",
-      "iccid": "543",
-      "vas": "456",
-      "date": "2023-01-12T18:30:00.000Z",
-      "id": 1
-    }
-  ],
+  "simInfoList": [],
   "comments": [
     {
       "id": 1,

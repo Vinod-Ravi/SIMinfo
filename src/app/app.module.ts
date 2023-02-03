@@ -10,7 +10,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { SiminformationComponent } from './siminformation/siminformation.component';
-
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -33,6 +32,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DialogComponent } from './dialog/dialog.component';
+import { MobilecountrycodeComponent } from './mobilecountrycode/mobilecountrycode.component';
+import { DialogcountrycodeComponent } from './dialogcountrycode/dialogcountrycode.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import { DialogComponent } from './dialog/dialog.component';
     NavigationComponent,
     DashboardComponent,
     SiminformationComponent,
-    DialogComponent
+    DialogComponent,
+    MobilecountrycodeComponent,
+    DialogcountrycodeComponent
+
   ],
   imports: [
     BrowserModule,
