@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>User Registration</h1>
+<hr>
+<div mat-dialog-content>
+  <form [formGroup]="userRegistrationForm">
+    <mat-form-field class="example-spacer" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input formControlName="firstName" matInput placeholder="First Name">
+    </mat-form-field>
+    <mat-form-field class="example-spacer" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input formControlName="lastName" matInput placeholder="Last Name">
+    </mat-form-field>
+    <mat-form-field class="example-spacer" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" matInput placeholder="Password">
+    </mat-form-field>
+    <mat-form-field class="example-spacer" appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input type="password" formControlName="confirmPassword" matInput placeholder="Confirm Password">
+    </mat-form-field>
+    <mat-form-field class="example-spacer" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="example-spacer" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input formControlName="phoneNumber" matInput placeholder="Phone Number">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" (click)="submitUserRegistration()">Sign Up</button>
+</div>

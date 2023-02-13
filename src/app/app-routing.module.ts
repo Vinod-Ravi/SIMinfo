@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ErrorpageComponent } from './errorpage/errorpage.component';
-import { LoginComponent } from './login/login.component';
-import { MobilecountrycodeComponent } from './mobilecountrycode/mobilecountrycode.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { SiminformationComponent } from './siminformation/siminformation.component';
-import { UserregistrationComponent } from './userregistration/userregistration.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
+import { LoginComponent } from './components/login/login.component';
+import { MobilecountrycodeComponent } from './components/mobilecountrycode/mobilecountrycode.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { SiminformationComponent } from './components/siminformation/siminformation.component';
+import { UserregistrationComponent } from './components/userregistration/userregistration.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'userregistration', component: UserregistrationComponent },
-  { path: 'siminformation', component: SiminformationComponent },
-  { path: 'navigation', component: NavigationComponent },
-  { path: 'mobilecountrycode', component: MobilecountrycodeComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'userregistration', component: UserregistrationComponent, canActivate: [AuthGuard] },
+  { path: 'siminformation', component: SiminformationComponent, canActivate: [AuthGuard] },
+  { path: 'navigation', component: NavigationComponent, canActivate: [AuthGuard] },
+  { path: 'mobilecountrycode', component: MobilecountrycodeComponent, canActivate: [AuthGuard] },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
   },

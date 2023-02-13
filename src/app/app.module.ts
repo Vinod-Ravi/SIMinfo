@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { ErrorpageComponent } from './errorpage/errorpage.component';
-import { UserregistrationComponent } from './userregistration/userregistration.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
+import { UserregistrationComponent } from './components/userregistration/userregistration.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { SiminformationComponent } from './siminformation/siminformation.component';
+import { SiminformationComponent } from './components/siminformation/siminformation.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,13 +27,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { DialogComponent } from './dialog/dialog.component';
-import { MobilecountrycodeComponent } from './mobilecountrycode/mobilecountrycode.component';
-import { DialogcountrycodeComponent } from './dialogcountrycode/dialogcountrycode.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MobilecountrycodeComponent } from './components/mobilecountrycode/mobilecountrycode.component';
+import { DialogcountrycodeComponent } from './components/dialogcountrycode/dialogcountrycode.component';
+import { NgToastModule } from 'ng-angular-popup';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,10 +59,14 @@ import { DialogcountrycodeComponent } from './dialogcountrycode/dialogcountrycod
     MatListModule, MatGridListModule, MatCardModule, MatMenuModule,
     BrowserAnimationsModule, CdkTableModule, MatTableModule, ReactiveFormsModule,
     MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule,
-    MatRadioModule, HttpClientModule, MatPaginatorModule, MatSortModule
+    MatRadioModule, HttpClientModule, MatPaginatorModule, MatSortModule, NgToastModule
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

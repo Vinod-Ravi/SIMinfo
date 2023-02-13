@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Add SIM Information</h1>
+<hr>
+<div mat-dialog-content>
+  <form [formGroup]="simInfoForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Advice of Charge (AoC)</mat-label>
+      <input formControlName="adviceOfCharge" matInput placeholder="Advice of Charge (AoC)">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Authentication Key (Ki)</mat-label>
+      <input formControlName="authenticationKey" matInput placeholder="Authentication Key (Ki)">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mobile Country Code (MCC)</mat-label>
+      <mat-select formControlName="mobileCountryCode" placeholder="Mobile Country Code (MCC)">
+        <mat-option *ngFor="let CountryCode of countryCodeList"
+          [value]="CountryCode.countryCode">{{CountryCode.codeName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Local Area Identity (LAI)</mat-label>
+      <input formControlName="localAreaIdentity" matInput placeholder="Local Area Identity (LAI)">
+    </mat-form-field>
+    <label for="">
+      <h1>Service Provider Name (SPN)</h1>
+    </label>
+    <mat-radio-group formControlName="serviceProviderName" class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let service of serviceProviderList" [value]="service">
+        {{service}}</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field appearance="outline">
+      <mat-label>Integrated Circuit Card ID (ICCID)</mat-label>
+      <input formControlName="integratedCircuitCardId" matInput placeholder="Integrated Circuit Card ID (ICCID)">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Value-Added Services (VAS)</mat-label>
+      <input formControlName="valueAddedServices" matInput placeholder="Value-Added Services (VAS)">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="createdDate" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" (click)="saveOrUpdate()">{{SaveOrUpdateBtn}}</button>
+</div>

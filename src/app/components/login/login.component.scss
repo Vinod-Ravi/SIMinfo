@@ -1,0 +1,38 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../assets/images/simImage4.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 27%;
+  margin-top: 2%;
+
+  h1 {
+    margin-bottom: 1rem;
+    font-size: 300%;
+    padding-left: 20%;
+  }
+}
+
+.example-spacer {
+  width: 60%;
+  margin-left: 20%;
+}
+
+.example-spacer-icon {
+  padding-left: 90%;
+}
+
+.wrapper-signup-width {
+  width: 40%;
+}

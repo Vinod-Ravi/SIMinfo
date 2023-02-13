@@ -3,4 +3,7 @@ export interface Mobilecountrycode {
     countryCode: string;
     countryName: string;
     codeName: string;
+    getMobileCountryCode: () => void;
+    editCountryCode: (row: any) => void;
+    deleteCountryCode: (id: number) => void;
 }

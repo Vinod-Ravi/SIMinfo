@@ -9,4 +9,7 @@ export interface Siminformation {
     valueAddedServices: string;
     createdDate: Date;
     createdUser: string;
+    getSimInformation: () => void;
+    editSimInfo: (row: any) => void;
+    deleteSimInfo: (id: number) => void;
 }
