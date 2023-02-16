@@ -41,11 +41,13 @@ export class LoginComponent implements OnInit, Common {
     });
   }
   applyFilter(event: Event) { }
+  
   userAuthentication() {
     this.api.checkUserAuthentication(this.authenticationForm.value).subscribe({
       next: (res) => {
         if (res.success == true) {
-          this.auth.storeToken(res.token);
+          this.auth.storeToken(res.accessToken);
+          this.auth.storeRefreshToken(res.refreshToken);
           this.toast.success({ detail: "SUCCESS", summary: res.message, duration: 5000 });
           this.redirectToComponent('/navigation');
         }

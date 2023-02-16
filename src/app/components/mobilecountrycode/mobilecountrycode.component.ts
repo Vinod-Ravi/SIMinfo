@@ -64,7 +64,8 @@ export class MobilecountrycodeComponent implements OnInit, Common, Mobilecountry
         this.dataSource.sort = this.sort;
       },
       error: (err) => {
-        this.toast.error({ detail: "ERROR", summary: "Error occured while fetching data!!", duration: 5000 });
+        if (this.auth.isLoggedIn())
+          this.toast.error({ detail: "ERROR", summary: "Error occured while fetching data!!", duration: 5000 });
       }
     })
   }

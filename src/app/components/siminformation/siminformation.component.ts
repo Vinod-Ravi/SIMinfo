@@ -70,7 +70,8 @@ export class SiminformationComponent implements OnInit, Common, Siminformation {
         this.dataSource.sort = this.sort;
       },
       error: (err) => {
-        this.toast.error({ detail: "ERROR", summary: "Error occured while fetching data!!", duration: 1000 });
+        if (this.auth.isLoggedIn())
+          this.toast.error({ detail: "ERROR", summary: "Error occured while fetching data!!", duration: 5000 });
       }
     })
   }

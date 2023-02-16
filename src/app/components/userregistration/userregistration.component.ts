@@ -29,10 +29,9 @@ export class UserregistrationComponent implements OnInit {
       phoneNumber: ['', Validators.required]
     })
   }
-
   submitUserRegistration() {
     if (this.userRegistrationForm.controls['password'].value != this.userRegistrationForm.controls['confirmPassword'].value) {
-      this.toast.error({ detail: "ERROR", summary: "Password and Confirm Password should match", duration: 5000 });
+      this.toast.error({ detail: "ERROR", summary: "Password and Confirm Password should match", position: 'toast-left-top error', duration: 5000 });
       return;
     }
     this.api.postUserRegistration(this.userRegistrationForm.value)

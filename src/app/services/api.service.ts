@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Siminformation } from '../models/interface/siminformation.model';
 import { Mobilecountrycode } from '../models/interface/mobilecountrycode.model';
-import { simInformationUrl, mobileCountryCodesUrl, userRegistrationUrl, userAuthenticationUrl } from '../shared/common/baseurls'
+import { simInformationUrl, mobileCountryCodesUrl, userRegistrationUrl, userAuthenticationUrl, nenewTokenUrl } from '../shared/common/baseurls'
 import { User } from '../models/interface/user.model';
 import { Messages } from '../models/class/messages.model';
 
@@ -13,7 +13,6 @@ import { Messages } from '../models/class/messages.model';
 export class ApiService {
   constructor(private http: HttpClient) {
   }
-
   getSimInfo(): Observable<Siminformation[]> {
     return this.http.get<Siminformation[]>(simInformationUrl);
   }
@@ -43,5 +42,8 @@ export class ApiService {
   }
   checkUserAuthentication(data: User) {
     return this.http.post<Messages>(userAuthenticationUrl, data);
+  }
+  renewToken(data: Messages) {
+    return this.http.post<any>(nenewTokenUrl, data);
   }
 }
