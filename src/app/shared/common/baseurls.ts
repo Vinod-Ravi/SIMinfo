@@ -1,6 +1,7 @@
-export const simInformationUrl: string = 'https://localhost:7274/api/SimInformation/'
-export const mobileCountryCodesUrl: string = 'https://localhost:7274/api/MobileCountryCode/'
-export const userRegistrationUrl: string = 'https://localhost:7274/api/Login/userRegistration/'
-export const userAuthenticationUrl: string = 'https://localhost:7274/api/Login/authenticate/'
-export const nenewTokenUrl: string = 'https://localhost:7274/api/Login/refresh/'
+export const baseUrl: string ='https://localhost:7274/api/'
+export const simInformation: string = 'SimInformation/'
+export const mobileCountryCodes: string = 'MobileCountryCode/'
+export const userRegistration: string = 'Login/userRegistration/'
+export const userAuthentication: string = 'Login/authenticate/'
+export const nenewToken: string = 'Login/refresh/'
 
